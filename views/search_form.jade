@@ -10,20 +10,34 @@ block search
 		#select_subject
 			label(for="subject_dropdown") Class:
 			select(id="subject_dropdown" name="subject_dropdown" onchange="update_section()")
+				//- For displaying previous selection
+				-var input = null;
+				if typeof data.params !== 'undefined'
+					-input = data.params.split(',')[0]
+				
 				option(disabled selected) --- Choose Class ---
-				each item in data.subjects
-					option #{item}
+				each item, index in data.subjects
+					if input != null && index == input
+						option(selected) #{item}
+					else
+						option #{item}
 	
 		#select_section
 			label(for="section_dropdown") Section:
-			select(id="section_dropdown" name="section_dropdown")
+			select(id="section_dropdown" name="section_dropdown" onchange="update_pref()")
+				//   TODO: Implement previous chosen section?
+				//- Still need this disabled option, for correct array indexing
 				option(disabled selected) --- Choose Class First ---
-				-var index = 0;
+				
+				-var sub_index = 0;
 				each sub in data.subjects
 					-var section_num = 1;
 					each item in data.sections[sub]
 						//-  TODO: Should we display multiple times as well?
-						-var display_text = section_num++ + " (" + item["Time"][0]["Days"] + " " + item["Time"][0]["Time"] + ")";
-						option(value="#{index},#{section_num}") #{display_text}
-					-index++;
-		input(type="button" id="search_button" value="Search!")
+						-var display_text = section_num + " (" + item["Time"][0]["Days"] + " " + item["Time"][0]["Time"] + ")";
+						option(value="#{sub_index},#{section_num++}") #{display_text}
+					-sub_index++;
+		
+		#section_pref
+		
+		input(type="submit" id="search_button" value="Search!")

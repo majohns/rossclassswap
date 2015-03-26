@@ -5,3 +5,9 @@ block title
 	
 block intro
 	h1 Search Results
+	
+block end
+	p.
+		Run algorithm search for Section #{data.params.split(',')[1]},
+		#{data.subjects[data.params.split(',')[0]]}
+	

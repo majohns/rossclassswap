@@ -6,17 +6,6 @@ $(document).ready(function() {
 	options = $('#section_dropdown option').clone();	//   For backup
 	$('#section_dropdown').empty();
 	$('#section_dropdown').html('<option disabled selected>' + options[0].text + '</option>');
-	
-	$('#search_button').click(function() {
-		
-		$.post('http://localhost:3000/search', { search : 1 }, function(data) {
-			if(data == 'done') {
-				alert("search!");
-			}
-		});
-		
-		//alert("hello");
-	});
 });
 
 function update_section() {
@@ -30,21 +19,29 @@ function update_section() {
 				+ options[i].text + '</option>';
 		}
 	}
+	
 	$('#section_dropdown').empty();
 	$('#section_dropdown').html(results);
+	$('#section_dropdown').prepend('<option disabled selected>--- Choose Section ---</option>');
+	$('#section_pref').empty();
 }
 
-
-
-/*
-$("#submit").click(function(){
-          user=$("#user").val();
-          pass=$("#password").val();
-          $.post("http://localhost:3000/login",{user: user,password: pass}, function(data){
-            if(data==='done')
-              {
-                alert("login success");
-              }
-          });
-        });
-		*/
+function update_pref() {
+	var sections = document.getElementById('section_dropdown');
+	
+	var checkbox_space = $('#section_pref');
+	var boxes = [];
+	
+	for(var i=1; i < sections.options.length; i++) {
+		var temp = '<input type="checkbox" ';
+		if(i == sections.selectedIndex) {
+			temp += 'disabled ';
+		}
+		temp += 'name="check_' + sections.options[i].value + '" ' 
+			+ 'value="' + sections.options[i].value.split(',')[1] + '">' 
+			+ sections.options[i].text + '</input>';
+		boxes[boxes.length] = temp;
+	}
+	
+	checkbox_space.html(boxes);
+}
