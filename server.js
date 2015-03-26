@@ -1,6 +1,5 @@
 var express = require('express');				//   used for routing
 var app = express();							//   enable express module
-app.use(express.static('app'));					//   TODO: security issue?
 app.set('views', __dirname + '/views');			//   set default "views" directory
 app.set('view engine', 'jade');					//   enable jade.
 
@@ -52,6 +51,11 @@ app.get('/', function (request, response) {
 app.post('/search', function(request, response) {
 	console.log("received");
 	response.render('search_results', {data: {'subjects': core_classes, 'sections': subject_info}});
+});
+
+//   TODO: Security issue?
+app.get('/assets/javascripts/search_form.js', function(req, res) {
+	res.sendFile(__dirname + '/assets/javascripts/search_form.js');
 });
 
 app.listen(PORT);		//   start server
