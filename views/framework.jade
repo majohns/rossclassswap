@@ -1,0 +1,26 @@
+//http://runnable.com/UTlPPF-f2W1TAAEe/render-jade-with-express-for-node-js
+//http://jade-lang.com/
+//http://stackoverflow.com/questions/23031161/get-variable-on-client-side-from-the-server-side-express-js-node-js
+
+-var home_url = 'http://localhost:3000/';
+
+doctype html
+html(lang="en")
+	head
+		block title
+		block scripts
+			
+	body
+		#header
+			#logo
+				a(href=home_url) Home
+				
+			#login
+				p Sign Up
+				p Sign In
+		
+		block intro
+		
+		block search
+		
+		block end

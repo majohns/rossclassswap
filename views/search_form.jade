@@ -1,0 +1,29 @@
+extends ./framework.jade
+
+block scripts
+	script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js")
+	script(src='../assets/javascripts/search_form.js')
+	
+block search
+	#search_form
+	form(name="search" method="post")
+		#select_subject
+			label(for="subject_dropdown") Class:
+			select(id="subject_dropdown" name="subject_dropdown" onchange="update_section()")
+				option(disabled selected) --- Choose Class ---
+				each item in data.subjects
+					option #{item}
+	
+		#select_section
+			label(for="section_dropdown") Section:
+			select(id="section_dropdown" name="section_dropdown")
+				option(disabled selected) --- Choose Class First ---
+				-var index = 0;
+				each sub in data.subjects
+					-var section_num = 1;
+					each item in data.sections[sub]
+						//-  TODO: Should we display multiple times as well?
+						-var display_text = section_num++ + " (" + item["Time"][0]["Days"] + " " + item["Time"][0]["Time"] + ")";
+						option(value="#{index},#{section_num}") #{display_text}
+					-index++;
+		input(type="button" id="search_button" value="Search!")
