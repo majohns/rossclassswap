@@ -1,0 +1,17 @@
+extends ./framework.jade
+
+block title
+	title Login
+	
+block intro
+	h1 Login
+	form(name="login" method="post")
+		#username
+			label(for="username_text") Username:
+			input(type="text" name="username" id="username")
+		
+		#password
+			label(for="password_text") Password:
+			input(type="password" name="password")
+		
+		input(type="submit" value="Login")
