@@ -31,17 +31,15 @@ api.set_core_classes(core_classes);
 
 const PORT = 3000;
 
-auth.testing();
-
 //   Routing Requests
 app.get('/', function (request, response) {
 	sess = request.session;
 	
-	if(sess.user) {
+	if(!sess.user) {
 		pref_bits = 0;			//   reset search preferences
 		if(expire_time >= new Date()) {
 			//   Cached Data
-			response.render('home', {data: {'subjects': core_classes, 'sections': subject_info}});
+			response.render('home', {data: {'login': sess.user != null, 'subjects': core_classes, 'sections': subject_info}});
 			return;
 		}
 		async.waterfall([
@@ -60,7 +58,7 @@ app.get('/', function (request, response) {
 					callback(null);
 				});
 			}, function(callback) {
-				response.render('home', {data: {'subjects': core_classes, 'sections': subject_info}});
+				response.render('home', {data: {'login': sess.user != null, 'subjects': core_classes, 'sections': subject_info}});
 			}
 		]);
 	} else {
@@ -81,18 +79,35 @@ app.post('/', function(request, response) {
 
 //   TODO: Determine whether can use co-sign?
 app.get('/login', function(req, res) {
-	res.render('login');
+	sess = req.session;
+	res.render('login', {data: {'login': sess.user != null}});
 });
 
 app.post('/login', function(req, res) {
 	//   OMG, so unsecure.
 	sess = req.session;
 	sess.user = req.body.username;
-	res.end('done');
+	res.redirect('/');
+});
+
+app.get('/logout', function(req, res) {
+	req.session.destroy(function(err) {
+		if(err) {
+			console.log(err);
+		} else {
+			res.redirect('/');
+		}
+	});
+	
 });
 
 app.get('/dashboard', function(req, res) {
-	res.render('dashboard');
+	sess = req.session;
+	if(sess.user) {
+		res.render('dashboard', {data: {'login': sess.user != null} });
+	} else {
+		res.redirect('/login');		//   if try to access dashboard directly
+	}
 });
 
 app.get('/search', function(req, res) {
