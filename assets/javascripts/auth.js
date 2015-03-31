@@ -2,8 +2,13 @@ var querystring = require('querystring');
 var https = require('https');
 var async = require('async');
 
-var CONSUMER_KEY = "4EZScGSJfjAFAhhOkGjH3b5sKMEa";
-var CONSUMER_SECRET = "TMo4DDaYnxgWb_zBOTiee1VayMca";
+var env = (function() {
+	var Habitat = require('habitat');
+	Habitat.load();
+	return new Habitat();
+}());
+var CONSUMER_KEY = env.get("CONSUMER_KEY");
+var CONSUMER_SECRET = env.get("CONSUMER_SECRET");
 
 exports.get_access_token = function getToken(cb) {
 	var access_token = "";

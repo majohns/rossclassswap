@@ -32,6 +32,8 @@ block search
 				-var sub_index = 0;
 				each sub in data.subjects
 					-var section_num = 1;
+					//-  TODO: I get these random errors sometimes, when the server doesn't retrieve everything properly
+					//-  and this code tries to run. Fix?
 					each item in data.sections[sub]
 						//-  TODO: Should we display multiple times as well?
 						-var display_text = section_num + " (" + item["Time"][0]["Days"] + " " + item["Time"][0]["Time"] + ")";

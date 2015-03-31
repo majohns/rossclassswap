@@ -1,0 +1,5 @@
+# Don't want to push modules on repo
+node_modules/
+
+# env file
+*.env

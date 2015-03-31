@@ -16,8 +16,11 @@ html(lang="en")
 				a(href=home_url) Home
 				
 			#login
-				p Sign Up
-				p Sign In
+				if data.login
+					a(href=home_url + 'logout') Sign Out
+				else
+					p Sign Up
+					a(href=home_url + 'login') Sign In
 		
 		block intro
 		
