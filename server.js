@@ -53,6 +53,7 @@ app.get('/', function (request, response) {
 	if(expire_time >= new Date()) {
 		//   Cached Data
 		response.render('home', {data: {'login': sess.user != null, 'name': sess.user,
+			'picture': sess.picture,
 			'subjects': core_classes, 'sections': subject_info}});
 		return;
 	}
@@ -73,6 +74,7 @@ app.get('/', function (request, response) {
 			});
 		}, function(callback) {
 			response.render('home', {data: {'login': sess.user != null, 'name': sess.user,
+				'picture': sess.picture,
 				'subjects': core_classes, 'sections': subject_info}});
 		}
 	]);
@@ -132,7 +134,7 @@ app.get('/logout', function(req, res) {
 app.get('/dashboard', function(req, res) {
 	sess = req.session;
 	if(sess.user) {
-		res.render('dashboard', {data: {'login': sess.user != null} });
+		res.render('dashboard', {data: {'login': sess.user != null, 'name': sess.user, 'picture': sess.picture} });
 	} else {
 		res.redirect('/login');		//   if try to access dashboard directly
 	}
@@ -143,6 +145,7 @@ app.get('/search', function(req, res) {
 		res.redirect('/');
 	} else {
 		res.render('search_results', {data: {'login': sess.user != null, 'name': sess.user,
+			'picture': sess.picture,
 			'subjects': core_classes, 'sections': subject_info, 'params' : search_str}});
 	}
 });
@@ -158,8 +161,10 @@ app.get('/oauth2callback', function(req, res) {
 			sess.user = obj.name;
 			sess.email = obj.email;
 			sess.token = obj.token;
+			sess.picture = obj.picture;
 		}
 		console.log(obj.name + ',', obj.email, ':', obj.token);
+		console.log(sess.picture);
 		res.redirect('/');
 	});
 });

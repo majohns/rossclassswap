@@ -60,7 +60,8 @@ exports.get_info = function(code, cb) {
 				obj = {
 					name: profile.name.givenName,
 					email: email_var,
-					token: tokens.access_token
+					token: tokens.access_token,
+					picture: profile.image.url
 				}
 				cb(obj);
 			}

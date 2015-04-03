@@ -1,26 +1,48 @@
-//http://runnable.com/UTlPPF-f2W1TAAEe/render-jade-with-express-for-node-js
-//http://jade-lang.com/
-//http://stackoverflow.com/questions/23031161/get-variable-on-client-side-from-the-server-side-express-js-node-js
+//-http://runnable.com/UTlPPF-f2W1TAAEe/render-jade-with-express-for-node-js
+//-http://jade-lang.com/
+//-http://stackoverflow.com/questions/23031161/get-variable-on-client-side-from-the-server-side-express-js-node-js
 
 -var home_url = 'http://localhost:3000/';
 
 doctype html
 html(lang="en")
 	head
+		meta(name='viewport' content='initial-scale=1')
+		
 		block title
+		
+		//   Bootstrap Core CSS
+		link(rel='stylesheet' type='text/css' href='/dist/css/bootstrap.min.cs')
+		
+		link(rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Alegreya:400,700,900')
+		link(rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Roboto')
+		link(rel='stylesheet' type='text/css' href='/stylesheets/framework.css')
+		block styles
+		
+		script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js")
+		script(src='http://localhost:3000/javascripts/google_login.js')
 		block scripts
 			
 	body
 		#header
-			#logo
-				a(href=home_url) Home
-				
-			#login
-				if data.login
-					a(href=home_url + 'logout') Sign Out
-				else
-					p Sign Up
-					a(href=home_url + 'login') Sign In
+			a(id='home', href=home_url) EzySwap
+
+			if data.login
+				ul(id='user_button')
+					li
+						span(class='welcome') Welcome, Aaron
+					li
+						img(id='photo' src=data.picture)
+						ul
+							li
+								a(href=home_url + 'dashboard') Dashboard
+							li
+								a(href=home_url + 'logout') Sign Out
+					
+			else
+				#login
+					span(class='icon')
+					span(class='button_text') Sign In
 		
 		block intro
 		
