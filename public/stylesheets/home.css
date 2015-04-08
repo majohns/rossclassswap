@@ -1,0 +1,57 @@
+body {
+	background: url("http://localhost:3000/images/home-bkgd.jpg") no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+h1 {
+	width: 400px;
+	height: 400px;
+
+	margin-left: 30px;
+	
+	position: fixed;
+	top: 60px;
+	left: 60px;
+	
+	font-size: 72px;
+	font-family: 'Alegreya Sans', sans-serif;
+	font-style: oblique;
+}
+
+.box {
+	background-color: #ACB6BF;
+	opacity: 0.2;
+	filter: alpha(opacity=20);
+	border: solid;
+	color: #96A0A5;
+}
+
+#title {
+	width: 500px;
+	height: 500px;
+
+	float: left;
+	margin-top: 80px;
+	margin-left: 30px;
+}
+
+#search_box {
+	width: 400px;
+	height: 300px;
+	
+	float: right;
+	margin-top: 120px;
+	margin-right: 150px;
+}
+
+#search_form {
+	width: 400px;
+	height: 300px;
+	
+	position: fixed;
+	top: 150px;
+	right: 150px;
+}

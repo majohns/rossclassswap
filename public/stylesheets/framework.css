@@ -1,0 +1,166 @@
+/* Used for cross-browser compatibility */
+@viewport {
+	width: 960px;
+	zoom: 1.0;
+}
+
+#header {
+	height: 50px;
+	width: 100%;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	background: #29292B;
+	border-top-style: solid;
+	border-bottom-style: solid;
+	border-color: #232323;
+}
+
+#home {
+	float: left;
+	margin-top: 4px;
+	margin-left: 40px;
+	
+	font-family: 'Alegreya', serif;
+	font-weight: 900;
+	color: white;
+	font-size: 30px;
+}
+
+#home:link {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+/* Sign in button look */
+#login {
+	float: right;
+	margin-right: 30px;
+	margin-top: 7px;
+	
+	display: inline-block;
+    background: #dd4b39;
+    color: white;
+    width: 130px;
+    border-radius: 5px;
+    white-space: nowrap;
+}
+
+#login:hover {
+	background: #e74b37;
+    cursor: hand; cursor: pointer;
+}
+
+#login span.icon {
+	background: url('/images/btn_red.png') transparent 2px 50% no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+    width: 35px;
+    height: 35px;
+    border-right: #bb3f30 1px solid;
+}
+
+/* The actual thing you click for sign in button */
+#login span.button_text {
+	display: inline-block;
+    vertical-align: middle;
+    padding-left: 24px;
+    padding-right: 24px;
+    font-size: 14px;
+    font-weight: bold;
+	font-family: 'Roboto', arial, sans-serif;
+}
+
+/* Defines the area for the user button */
+#user_button {
+	float: right;
+	width: 280px;
+	height: 40px;
+	
+	margin-top: 7px;
+	margin-right: 40px;
+	
+	list-style: none;
+	
+	border-radius: 10px;
+}
+
+#user_button span.welcome {
+	width: 260px;
+	height: 20px;
+	color: #C9C9C9;
+	
+	display: inline-block;
+	vertical-align: middle;
+	position: absolute;
+	left: -40px;
+	top: 7px;
+	
+	font-size: 18px;
+	text-align: right;
+	font-family: 'Alegreya', serif;
+	font-weight: 700;
+	font-style: bold;
+}
+
+#photo {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	
+	position: absolute;
+	left: 230px;
+	top: -4px;
+	
+	border-style: solid;
+	color: black;
+}
+
+/*   DROPDOWN MENU  */
+
+#user_button ul {
+	list-style: none;
+	text-align: right;
+
+	width: 120px;
+	
+	margin-top: 3px;
+	position: absolute;
+	left: -9999px;
+}
+
+#user_button li {
+	position: relative;
+}
+
+#user_button ul a {
+	/* Prevent multi-line menu options */
+	white-space: nowrap;
+}
+
+#user_button a {
+	/* Drop down options */
+	display: block;
+	padding: 5px;
+	width: 100px;
+	
+	color: #C9C9C9;
+	
+    text-decoration:none;
+	font-family: 'Alegreya', serif;
+	font-weight: 600;
+}
+
+#user_button li ul {
+	margin-top: 41px;	/* Adjust where the dropdown box appears (top) */
+}
+
+#user_button a:hover {
+	background: #3A3D3D;
+}
+
+#user_button li:hover ul {
+	border-radius: 10px;
+	background:#29292B;
+	left: 114px;	/* Only need to adjust left, because left is used to make it disappear */
+}
